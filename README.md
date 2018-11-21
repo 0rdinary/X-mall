@@ -13,3 +13,8 @@
 
 - Project started.
 
+### 11/21/2018
+
+* Add Main page (for Login)
+* Add Sign_up page
+* Neither had functions
