@@ -15,6 +15,11 @@
 
 ### 11/21/2018
 
-* Add Main page (for Login)
-* Add Sign_up page
-* Neither had functions
+- Add Main page (for Login)
+- Add Sign_up page
+- Neither had functions
+
+
+### 11/23/2018
+
+- Make Join_Form and Proc (Sign Up)
