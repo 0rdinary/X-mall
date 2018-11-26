@@ -6,13 +6,7 @@
 		<meta charset="EUC-KR">
 		<title>X-mall 회원가입</title>
 		
-		<style>
-				#wrap{
-					width:530px;
-					margin-left:auto;
-					margin-right:auto;
-					text-align:center;
-				}
+		<style type ="text/css">
 				table{
 					margin-left:auto;
 					margin-right:auto;
@@ -44,11 +38,16 @@
 					return false;
 				}
 				
+				if (!document.userInfo.phone_number.value) {
+					alert("전화번호를 입력하세요.")
+					return false;
+				}
+				
 				return true;
 			}
 			
-			function goLoginForm() {
-				location.href="loginForm.jsp";
+			function goMainForm() {
+				location.href="../MainForm.jsp";
 			}
 		</script>
 	</head>
@@ -58,7 +57,7 @@
 			<b><font size="6" color="gray">회원가입</font></b>
 			<br><br><br>
 			
-			<form method="post" action="../pro/JoinPro.jsp" name="userInfo" onsubmit="return checkValue()">
+			<form method="post" action="pro/JoinPro.jsp" name="userInfo" onsubmit="return checkValue()">
 				<table>
 					<tr>
 						<td id="title">*아이디(숫자 11자리이내)</td>
@@ -137,7 +136,7 @@
 					</tr>
 				</table>
 				<br>
-				<input type="submit" value="가입"/> <input type="button" value="취소" onclick="goLoginForm()">
+				<input type="submit" value="가입"/> <input type="button" value="취소" onclick="goMainForm()">
 			</form>
 		</div>
 	</body>

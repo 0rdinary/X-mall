@@ -23,3 +23,10 @@
 ### 11/23/2018
 
 - Make Join_Form and Proc (Sign Up)
+
+### 11/26/2018
+
+- Make LoginForm (for login), UserInfoForm (for check UserInfo) and ModifyForm (for modify UserInfo)
+- Add Login, Logout and Signup function
+- Add modify_userInfo function (but incomplete)
+- Separate page to header, main, footer

@@ -44,15 +44,13 @@ public class CustomerDAO {
 				pstmt.setString(6, temp);
 			}
 			
-			pstmt.setString(7, Integer.toString(customer.getAge()));
+			pstmt.setInt(7, customer.getAge());
 			temp = customer.getJob();
 			if (temp == null) {
 				pstmt.setNull(8, java.sql.Types.NULL);
 			} else {
 				pstmt.setString(8, temp);
 			}
-			
-			System.out.println(pstmt);
 			
 			pstmt.executeUpdate();
 			conn.commit();
@@ -65,6 +63,97 @@ public class CustomerDAO {
 				if ( pstmt != null) { pstmt.close(); pstmt=null; }
 				if (conn != null) { conn.close(); conn=null; }
 			} catch(Exception e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+	}
+	
+	public CustomerBean getUserInfo(String id) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		CustomerBean customer = null;
+		
+		try {
+			StringBuffer query = new StringBuffer();
+			query.append("SELECT * FROM CUSTOMER WHERE User_id=?");
+			
+			conn = DBConnection.getConnection();
+			pstmt = conn.prepareStatement(query.toString());
+			pstmt.setInt(1, Integer.parseInt(id));
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				customer = new CustomerBean();
+				customer.setUser_id(rs.getInt("User_id"));
+				customer.setUser_password(rs.getString("User_password"));
+				customer.setAddress(rs.getString("Address"));
+				customer.setPhone_number(rs.getString("Phone_number"));
+				customer.setMembership(rs.getInt("Membership"));
+				customer.setSex(rs.getString("Sex"));
+				customer.setAge(rs.getInt("Age"));
+				customer.setJob(rs.getString("Job"));
+			}
+			
+			return customer;
+		} catch (Exception e) {
+			throw new RuntimeException(e.getMessage());
+		} finally {
+			try {
+				if (pstmt != null) {pstmt.close(); pstmt=null;}
+				if (conn != null) {conn.close(); conn=null;}
+			} catch (Exception e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+	}
+	
+	public void updateCustomer(CustomerBean customer) throws SQLException {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			StringBuffer query = new StringBuffer();
+			query.append("UPDATE CUSTOMER SET");
+			query.append(" User_password=?, Address=?, Phone_number=?, Sex=?, Age=?, Job=?");
+			query.append(" WHERE User_id=?");
+			
+			conn = DBConnection.getConnection();
+			pstmt = conn.prepareStatement(query.toString());
+			
+			conn.setAutoCommit(false);
+			
+			pstmt.setString(1, customer.getUser_password());
+			pstmt.setString(2, customer.getAddress());
+			pstmt.setString(3, customer.getPhone_number());
+			
+			String temp = customer.getSex();
+			if (temp.equals("privacy")) {
+				pstmt.setNull(4, java.sql.Types.NULL);
+			} else {
+				pstmt.setString(4, temp);
+			}
+			
+			pstmt.setInt(5, customer.getAge());
+			
+			temp = customer.getJob();
+			if (temp == null) {
+				pstmt.setNull(6, java.sql.Types.NULL);
+			} else {
+				pstmt.setString(6, temp);
+			}
+			pstmt.setInt(7, customer.getUser_id());
+			
+			pstmt.executeUpdate();
+			conn.commit();
+		} catch (Exception e) {
+			conn.rollback();
+			throw new RuntimeException(e.getMessage());
+		} finally {
+			try {
+				if (pstmt != null) { pstmt.close(); pstmt = null;}
+				if (conn != null) { conn.close(); conn=null;}
+			} catch (Exception e) {
 				throw new RuntimeException(e.getMessage());
 			}
 		}

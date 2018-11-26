@@ -8,24 +8,13 @@
 	<head>
 		<meta charset="EUC-KR">
 		<title>회원가입 처리 JSP</title>
-		<style>
-			#wrap{
-				margin-left:auto;
-				margin-right:auto;
-				text-align:center;
+		<link href='css/join_style.css' rel='stylesheet' style='text/css'>
+		
+		<script type="text/javascript">
+			function goMainForm() {
+				location.href="../MainForm.jsp";
 			}
-			table {
-				margin-left:auto;
-				margin-right:auto;
-				border:3px solid skyblue
-			}
-			td {
-				border:1px solid skyblue
-			}
-			#title{
-				background-color:skyblue
-			}
-		</style>
+		</script>
 	</head>
 	<body>
 		<%
@@ -64,21 +53,20 @@
 				</tr>
 				<tr>
 					<td id="title">성별</td>
-					<td><%=customerBean.getSex() %>
+					<td><%=customerBean.getSex() %></td>
 				</tr>
 				<tr>
 					<td id="title">나이</td>
-					<td><%=customerBean.getAge() %>
+					<td><%=customerBean.getAge()==0 ? 0 : customerBean.getAge() %></td>
 				</tr>
 				<tr>
 					<td id="title">직업</td>
-					<td><%=customerBean.getJob() %>
+					<td><%=customerBean.getJob()==null ? "privacy" : customerBean.getJob() %></td>
 				</tr>
 			</table>
 			
 			<br>
-			<input type="button" value="확인">
-			<input type="button" value="취소">
+			<input type="button" value="확인" onclick="goMainForm()">
 		</div>
 	</body>
 </html>
