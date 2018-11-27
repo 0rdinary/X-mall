@@ -4,6 +4,10 @@
 <%@ page import = "jsp.customer.model.CustomerBean" %>
 <%@ page import = "jsp.customer.model.CustomerDAO" %>
 
+<%
+	request.setCharacterEncoding("euc-kr");
+%>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -11,15 +15,13 @@
 		<title>회원정보 수정처리</title>
 	</head>
 	<body>
-		<%
-			request.setCharacterEncoding("euc-kr");
-		%>
 		<jsp:useBean id="customerBean" class="jsp.customer.model.CustomerBean"/>
 		<jsp:setProperty property="*" name="customerBean"/>
 		
 		<%
 			String id = session.getAttribute("sessionID").toString();
 			customerBean.setUser_id(Integer.parseInt(id));
+			System.out.println(customerBean.getAddress());
 			
 			CustomerDAO dao = CustomerDAO.getInstance();
 			dao.updateCustomer(customerBean);

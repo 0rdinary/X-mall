@@ -2,12 +2,10 @@
     pageEncoding="EUC-KR"%>
 <%@ page import = "jsp.customer.model.CustomerDAO" %>
 <%@ page import = "jsp.customer.model.CustomerBean" %>
+
 <!DOCTYPE html>
 <html>
 	<head>
-		<%
-			request.setCharacterEncoding("euc-kr");
-		%>
 		<%
 			String id = session.getAttribute("sessionID").toString();
 		

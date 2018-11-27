@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%
+	request.setCharacterEncoding("euc-kr");
 	String contentPage=request.getParameter("contentPage");
 	if (contentPage == null){
 		contentPage="FirstView.jsp";
@@ -9,7 +10,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="UTF-8">
+		<meta charset="EUC-KR">
 		<title>메인화면</title>
 		
 		<style>
@@ -39,6 +40,7 @@
 				clear: left;
 				width: 800px;
 				height: 60px;
+				text-align: center;
 				background-color: #7DFE74;
 			}
 		</style>
@@ -52,7 +54,7 @@
 			<div id="main">
 				<jsp:include page="<%=contentPage%>" />
 			</div>
-			<div id="footer"> 하단 </div>
+			<div id="footer"> X-mall by team1 </div>
 		</div>
 	</body>
 </html>
