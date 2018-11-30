@@ -11,7 +11,7 @@
 <html>
 	<head>
 		<meta charset="EUC-KR">
-		<title>메인화면</title>
+		<title>X-mall</title>
 		
 		<style>
 			#wrap {

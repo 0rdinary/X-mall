@@ -19,6 +19,52 @@ private static ItemDAO instance;
 		return instance;
 	}
 	
+	public ItemBean getItem(int id) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		ItemBean destItem = new ItemBean();
+		try {
+			StringBuffer query = new StringBuffer();
+			query.append("SELECT * FROM ITEM WHERE Item_id = ?");
+			
+			conn = DBConnection.getConnection();
+			pstmt = conn.prepareStatement(query.toString());
+			pstmt.setInt(1, id);
+			
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				destItem.setItem_id(rs.getInt("Item_id"));
+				destItem.setName(rs.getString("Name"));
+				destItem.setPrice(rs.getInt("Price"));
+				destItem.setDiscount_rate(rs.getInt("Discount_rate"));
+				
+				Calendar cal = Calendar.getInstance();
+				cal.setTime(rs.getDate("Exp_date"));
+				destItem.setYear(cal.get(Calendar.YEAR));
+				destItem.setMonth(cal.get(Calendar.MONTH));
+				destItem.setDay(cal.get(Calendar.DAY_OF_MONTH));
+				
+				destItem.setRating(rs.getDouble("Rating"));
+				destItem.setImporter(rs.getString("Importer"));
+				destItem.setCid(rs.getInt("CID"));
+				destItem.setPid(rs.getInt("PID"));
+			}
+			
+			return destItem;
+		} catch (Exception sqle) {
+			throw new RuntimeException(sqle.getMessage());
+		} finally {
+			try {
+				if (pstmt != null) { pstmt.close(); pstmt = null; }
+				if (conn != null) { conn.close(); conn = null; }
+			} catch (Exception e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+	}
+	
 	// item은 찾아야할 아이템들의 정보를 가지고 있음
 	// 작은 카테고리 일때
 	public List<ItemBean> getItemList(ItemBean item) {

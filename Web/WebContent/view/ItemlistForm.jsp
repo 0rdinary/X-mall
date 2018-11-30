@@ -93,8 +93,8 @@
 		<div id="board">
 			<table>
 				<tr id="title">
-					<td>품목 번호</td>
-					<td>품목 이름</td>
+					<td>상품 번호</td>
+					<td>상품 이름</td>
 					<td>가격</td>
 					<td>판매자</td>
 					<td>평점</td>
@@ -109,7 +109,7 @@
 					<tr id="content" onclick="changeForm(<%=itemList.get(i).getItem_id() %>)" style="cursor:pointer">
 						<td><%=itemList.get(i).getItem_id() %></td>
 						<td><%=itemList.get(i).getName() %></td>
-						<td><%=itemList.get(i).getPrice() %></td>
+						<td><%=itemList.get(i).getPrice() %>원</td>
 						<td><%=itemList.get(i).getImporter() %></td>
 						<td><%=itemList.get(i).getRating() %></td>
 					</tr>
