@@ -30,7 +30,7 @@
 			#main {
 				float: left;
 				width: 800px;
-				height: 500px;
+				height: 1000px;
 				background-color: #FFCA6C;
 				text-align: center;
 				vertical-align: middle;

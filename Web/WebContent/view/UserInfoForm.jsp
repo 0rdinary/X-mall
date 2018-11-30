@@ -13,6 +13,7 @@
 			table {
 				margin-left:auto;
 				margin-right:auto;
+				width:500px;
 				border:3px solid skyblue;
 			}
 			
@@ -22,6 +23,10 @@
 			
 			#title {
 				background-color:skyblue;
+			}
+			
+			#content {
+				background-color:white;
 			}
 		</style>
 		
@@ -50,31 +55,31 @@
 			<table>
 				<tr>
 					<td id="title">아이디</td>
-					<td><%=customerBean.getUser_id() %></td>
+					<td id="content"><%=customerBean.getUser_id() %></td>
 				</tr>
 				<tr>
 					<td id="title">비밀번호</td>
-					<td><%=customerBean.getUser_password() %></td>
+					<td id="content"><%=customerBean.getUser_password() %></td>
 				</tr>
 				<tr>
 					<td id="title">주소</td>
-					<td><%=customerBean.getAddress() %></td>
+					<td id="content"><%=customerBean.getAddress() %></td>
 				</tr>
 				<tr>
 					<td id="title">휴대전화</td>
-					<td><%=customerBean.getPhone_number() %></td>
+					<td id="content"><%=customerBean.getPhone_number() %></td>
 				</tr>
 				<tr>
 					<td id="title">성별</td>
-					<td><%=customerBean.getSex()==null ? "privacy" : customerBean.getSex() %></td>
+					<td id="content"><%=customerBean.getSex()==null ? "privacy" : customerBean.getSex() %></td>
 				</tr>
 				<tr>
 					<td id="title">나이</td>
-					<td><%=customerBean.getAge() %></td>
+					<td id="content"><%=customerBean.getAge() %></td>
 				</tr>
 				<tr>
 					<td id="title">직업</td>
-					<td><%=customerBean.getJob()==null ? "privacy" : customerBean.getJob() %></td>
+					<td id="content"><%=customerBean.getJob()==null ? "privacy" : customerBean.getJob() %></td>
 				</tr>
 			</table>
 			
