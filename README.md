@@ -30,3 +30,12 @@
 - Add Login, Logout and Signup function
 - Add modify_userInfo function (but incomplete)
 - Separate page to header, main, footer
+
+### 11/27/2018
+
+- fix modification Userinfo function bug
+
+### 11/30/2018
+
+- Add Complete category
+- Add incomplete itemInfo
