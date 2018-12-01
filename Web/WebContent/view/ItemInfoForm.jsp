@@ -100,5 +100,6 @@
 			</tr>
 		</table>
 		<input type="button" value="카테고리로" onclick="changeForm(-1)">
+		<input type="button" value="장바구니에 담기" >
 	</body>
 </html>

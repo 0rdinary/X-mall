@@ -57,6 +57,11 @@
 					return false;
 				}
 				
+				if (!document.userInfo.phone_number.value) {
+					alert("전화번호를 입력하세요.")
+					return false;
+				}
+				
 				return true;
 			}
 		</script>

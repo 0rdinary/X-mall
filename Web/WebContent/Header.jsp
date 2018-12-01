@@ -29,6 +29,8 @@
 					location.href="MainForm.jsp?contentPage=view/UserInfoForm.jsp";
 				} else if (value == "5") {	// 카테고리 버튼 클릭시물품 리스트화면으로 이동
 					location.href="MainForm.jsp?contentPage=view/CategoryForm.jsp";
+				} else if (value == "6") {	// 장바구니 버튼 클릭시 장바구니 화면으로 이동
+					location.href="MainForm.jsp?contentPage=view/ShoppingbaglistForm.jsp"
 				}
 			}
 		</script>
@@ -50,6 +52,7 @@
 						<button id="logoutBtn" class="btn btn-primary" onclick="changeView(3)">로그아웃</button>
 						<button id="updateBtn" class="btn btn-primary" onclick="changeView(4)">내정보</button>
 						<button id="categoryBtn" class="btn btn-primary" onclick="changeView(5)">카테고리</button>
+						<button id="categoryBtn" class="btn btn-primary" onclick="changeView(6)">장바구니</button>
 				<%  } %>
 			</p>
 		</div>
