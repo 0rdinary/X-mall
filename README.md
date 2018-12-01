@@ -39,3 +39,8 @@
 
 - Add Complete category
 - Add incomplete itemInfo
+
+### 12/01/2018
+
+- Add 90% Category
+- Add 90% Order function
