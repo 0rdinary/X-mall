@@ -30,7 +30,11 @@
 		<script type="text/javascript">
 			function changeForm(val) {
 				if (val == "-1") {
-					
+					<% 
+						ShoppingbagDAO ssdao = ShoppingbagDAO.getInstance();
+						ssdao.insertShoppingbag(Integer.parseInt(session.getAttribute("sessionID").toString()));
+					%>
+					location.reload();
 				} else { // 해당쇼핑백으로 으로 이동할 수 있게 함
 					location.href = "MainForm.jsp?contentPage=view/ShoppingbagInfoForm.jsp?bagId=" + val;
 				}
@@ -66,5 +70,6 @@
 				</tr>
 			<%  } %>	
 		</table>
+		<input type="button" value="추가하기" onclick = "changeForm(-1)">
 	</body>
 </html>
