@@ -16,7 +16,7 @@
 <html>
 	<head>
 		<meta charset="EUC-KR">
-		<title>쇼핑백 정보</title>
+		<title>주문 정보</title>
 		<style>
 			table {
 				margin-left:auto;
@@ -40,18 +40,10 @@
 		<script type="text/javascript">
 			function changeForm(val) {
 				if (val == "-1") {
-					location.href="MainForm.jsp?contentPage=view/ShoppingbaglistForm.jsp"
+					location.href="MainForm.jsp?contentPage=view/HistoryListForm.jsp"
 				} else {
 					location.href = "MainForm.jsp?contentPage=view/OrderShoppingbagForm.jsp?bagId=" + val;
 				}
-			}
-			function deleteForm(val) {
-				location.href="MainForm.jsp?contentPage=pro/DeleteShoppingbagPro.jsp?bagId=" + val;
-			}
-			
-			function editForm(val) {
-				var bid = <%=bagId %>
-				location.href="MainForm.jsp?contentPage=view/EditItemForm.jsp?word=" + bid + "+" + val;
 			}
 		</script>
 	</head>
@@ -75,13 +67,11 @@
 				<td>상품 이름</td>
 				<td>가격</td>
 				<td>재고</td>
-				<td>주문가능재고</td>
 				<td>총가격(원)</td>
 			</tr>
 			<%
 				int listSize = ilist.size();
 				int total = 0;
-				boolean warn = false;
 				for (int i = 0; i < listSize; i++) {
 					int item_id = ilist.get(i).getItem_id();
 					ItemBean item = itdao.getItem(item_id);
@@ -90,23 +80,16 @@
 					int stock = ilist.get(i).getStock();
 					int totalStock = mdao.getStock(item_id);
 					total += item_price*stock;
-					if (totalStock < stock) { warn=true;
 			%>
-					<tr id = "warn" onclick = "editForm(<%=item_id %>)" style="cursor:pointer">
-					<% } else { %>
-					<tr id = "content" onclick = "editForm(<%=item_id %>)" style="cursor:pointer">
-					<% } %>
+					<tr id = "content">
 						<td><%=item_id %></td>
 						<td><%=item_name %></td>
 						<td><%=item_price %></td>
 						<td><%=stock %></td>
-						<td><%=totalStock %>
 						<td><%=item_price * stock %></td>
 					</tr>
 			<%  } %>
-			<% if (total == 0) warn = true; %>
 			<tr id = "content">
-				<td></td>
 				<td></td>
 				<td></td>
 				<td></td>
@@ -114,10 +97,6 @@
 				<td><%=total %></td>
 			</tr>
 		</table>
-		<input type="button" value="장바구니로" onclick = "changeForm(-1)" style="cursor:pointer">
-		<% if (warn == false) {%>
-			<input type="button" value="구매하기" onclick = "changeForm(<%=bagId %>)" style="cursor:pointer">
-		<% } %>
-		<input type="button" value="삭제하기" onclick="deleteForm(<%=bagId %>)" style="cursor:pointer">
+		<input type="button" value="주문내역으로" onclick = "changeForm(-1)" style="cursor:pointer">
 	</body>
 </html>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<% request.setCharacterEncoding("euc-kr"); %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -30,6 +31,19 @@
 		<script type="text/javascript">
 			function changeCategory(val) {
 				location.href="MainForm.jsp?contentPage=view/ItemlistForm.jsp?categoryIdx=" + val;
+			}
+			function searchForm() {
+				var selectTp = document.getElementById('tp');
+				var tp;
+				for (i = 0, j = selectTp.length; i < j; i++) {
+					if (selectTp.options[i].selected) {
+						tp = selectTp.options[i].value;
+						break;
+					}
+				}
+				var tt = document.getElementById("search").value;
+				
+				location.href="MainForm.jsp?contentPage=view/SearchItemlistForm.jsp?word=" + tp + "+" + tt;
 			}
 		</script >
 	</head>
@@ -75,5 +89,13 @@
 				<td onclick="changeCategory(9)" style="cursor:pointer;">면/떡국/찌개/냉장</td>
 			</tr>
 		</table>
+		<select name="tp" id = "tp">
+			<option value="iid">상품 번호</option>
+			<option value="name">상품 이름</option>
+			<option value="pd">생산자</option>
+			<option value="ip">판매자</option>
+		</select>
+		<input type="text" id="search" name="search">
+		<input type="button" value="검색하기" onclick="searchForm()">
 	</body>
 </html>

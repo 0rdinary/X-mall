@@ -49,6 +49,11 @@
 			function goMainForm() {
 				location.href="../MainForm.jsp";
 			}
+			
+			function checkID() {
+				var val = document.userInfo.user_id.value;
+				location.href="MainForm.jsp?contentPage=pro/CheckIDPro.jsp?uid=" + val;
+			}
 		</script>
 	</head>
 	<body>
@@ -63,7 +68,7 @@
 						<td id="title">*아이디(숫자 11자리이내)</td>
 						<td>
 							<input type="text" name="user_id" maxlength="11">
-							<input type="button" value="중복확인" >
+							<input type="button" value="중복확인" onclick="checkID()" >
 						</td>
 					</tr>
 					

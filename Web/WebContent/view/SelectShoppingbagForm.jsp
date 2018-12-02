@@ -4,6 +4,13 @@
 <%@ page import = "jsp.shoppingbag.model.ShoppingbagDAO" %>
 <%@ page import = "java.util.ArrayList" %>
 <%@ page import = "java.util.List" %>
+<%@ page import = "java.util.StringTokenizer" %>
+<%
+	String word = request.getParameter("word");
+	StringTokenizer st = new StringTokenizer(word);
+	String itemId = st.nextToken();
+	String count = st.nextToken();
+%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -30,17 +37,15 @@
 		
 		<script type="text/javascript">
 			function changeForm(val) {
-				if (val == "-2") {
-					location.href = "MainForm.jsp?contentPage=pro/AddShoppingbagPro.jsp"
-				} else { // 해당쇼핑백으로 으로 이동할 수 있게 함
-					location.href = "MainForm.jsp?contentPage=view/ShoppingbagInfoForm.jsp?bagId=" + val;
-				}
+				var itemId = <%=itemId %>;
+				var count = <%=count %>;
+				location.href = "MainForm.jsp?contentPage=pro/SelectShoppingbagPro.jsp?word=" + val + "+" + itemId + "+" + count;
 			}
 		</script>
 	</head>
 	<body>
 		<br><br>
-		<b><font size="6" color="gray">장바구니 리스트</font></b>
+		<b><font size="6" color="gray">장바구니 선택</font></b>
 		<br><br>
 		
 		<%
@@ -67,6 +72,5 @@
 				</tr>
 			<%  } %>	
 		</table>
-		<input type="button" value="추가하기" onclick = "changeForm(-2)">
 	</body>
 </html>

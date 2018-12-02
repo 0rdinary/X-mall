@@ -6,8 +6,12 @@
 <%@ page import = "jsp.producerlocation.model.ProducerlocationDAO" %>
 <%@ page import = "jsp.manage.model.ManageBean" %>
 <%@ page import = "jsp.manage.model.ManageDAO" %>
+<%@ page import = "java.util.StringTokenizer" %>
 <% 
-	String itemId=request.getParameter("itemId");
+	String word = request.getParameter("word");
+	StringTokenizer st = new StringTokenizer(word);
+	String bagId = st.nextToken();
+	String itemId = st.nextToken();
 %>
 
 <!DOCTYPE html>
@@ -20,7 +24,7 @@
 			table {
 				margin-left:auto;
 				margin-right:auto;
-				width:700px;
+				width:600px;
 				border:3px solid skyblue;
 			}
 			td {
@@ -37,13 +41,13 @@
 		<script type="text/javascript">
 			function changeForm(val) {
 				if (val == "-1") {
-					location.href = "MainForm.jsp?contentPage=view/CategoryForm.jsp";
+					location.href="MainForm.jsp?contentPage=view/ShoppingbaglistForm.jsp"
 				} else if (val == "-2") {
 					var lk = document.getElementById("oc").value;
+					if (!lk) lk = 0;
 					var id = <%=itemId %>
-					if (lk != 0) {
-						location.href = "MainForm.jsp?contentPage=view/SelectShoppingbagForm.jsp?word=" + id + "+" + lk;
-					}
+					var bid = <%=bagId %>
+					location.href = "MainForm.jsp?contentPage=pro/EditItemPro.jsp?word=" + bid + "+" + id + "+" + lk;
 				}
 			}
 		</script>
@@ -111,9 +115,7 @@
 				</td>
 			</tr>
 		</table>
-		<input type="button" value="카테고리로" onclick="changeForm(-1)">
-		<% if (mdao.getStock(Integer.parseInt(itemId)) != 0) {%>
-		<input type="button" value="장바구니에 담기" onclick="changeForm(-2)">
-		<%} %>
+		<input type="button" value="장바구니로" onclick="changeForm(-1)">
+		<input type="button" value="수정하기" onclick="changeForm(-2)">
 	</body>
 </html>

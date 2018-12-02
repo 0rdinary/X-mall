@@ -5,8 +5,14 @@
 <%@ page import = "jsp.category.model.CategoryDAO" %>
 <%@ page import = "java.util.List" %>
 <%@ page import = "java.util.ArrayList" %>
+<%@ page import = "java.util.StringTokenizer" %>
 <%
-	String categoryIdx=request.getParameter("categoryIdx");
+	request.setCharacterEncoding("euc-kr");
+	String word=request.getParameter("word");
+	StringTokenizer st = new StringTokenizer(word);
+	String type = st.nextToken();
+	String tt = st.nextToken();
+	System.out.println(tt);
 %>
 <!DOCTYPE html>
 <html>
@@ -43,49 +49,24 @@
 		</script>
 	</head>
 	<body>
-		<!-- 카테고리 이름 출력 -->
 		<br><br>
-		<b>
-			<font size="6" color="gray">
-				<%
-					int idx = Integer.parseInt(categoryIdx);
-					CategoryDAO cdao = CategoryDAO.getInstance();
-				
-					if (idx < 11) { // 소분류내에 들어가면
-				%>
-					<%=cdao.getCategoryName(idx) %>
-				<% } else { // 대분류를 출력해야할때
-						String large = "";
-						switch (idx) {
-							case 11 : large = "과일/견과";
-										break;
-							case 12 : large = "채소";
-										break;
-							case 13 : large = "유제품/냉장/냉동/간편식";
-						}
-				%>
-					<%=large %>
-				<% } %>
-			</font>
+		<b><font size="6" color="gray">상품 검색</font>
 		</b>
 		<br><br>
 		<%
 			ItemDAO dao = ItemDAO.getInstance();
 			List<ItemBean> itemList = new ArrayList<ItemBean>();
-		
-			if (idx < 11) {
-				ItemBean dest = new ItemBean();
-				dest.setCid(Integer.parseInt(categoryIdx));
-				
-				itemList = dao.getItemList(dest);
-			} else {
-				switch (idx) {
-					case 11 : itemList = dao.getItemList(1, 2, 3);
-								break;
-					case 12 : itemList = dao.getItemList(4, 5, 6);
-								break;
-					case 13 : itemList = dao.getItemList(7, 8, 9);
-				}
+			
+			if (type.equals("iid")) {
+				ItemBean ib = new ItemBean();
+				ib = dao.getItem(Integer.parseInt(tt));
+				itemList.add(ib);
+			} else if (type.equals("name")) {
+				itemList = dao.searchName(tt);
+			} else if (type.equals("pd")) {
+				itemList = dao.searchProducer(tt);
+			} else if (type.equals("ip")) {
+				itemList = dao.searchImporter(tt);
 			}
 		%>
 	

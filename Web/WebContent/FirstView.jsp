@@ -17,8 +17,14 @@
 			} else {
 		%>
 				<br><br><br>
-				<font size=6 color="skyblue"><%=session.getAttribute("sessionID") %></font>
-				<font size=6>님 환영합니다.</font>
+				<%
+					if (session.getAttribute("sessionID").toString().equals("-1")) {
+				%>
+					<b><font size=6 color="red">관리자 계정 접속 </font></b>
+				<% } else { %>
+					<font size=6 color="skyblue"><%=session.getAttribute("sessionID") %></font>
+					<font size=6>님 환영합니다.</font>
+				<% } %>
 		<%  } %>
 	</body>
 </html>

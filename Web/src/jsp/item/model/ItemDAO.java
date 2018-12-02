@@ -43,7 +43,7 @@ private static ItemDAO instance;
 				Calendar cal = Calendar.getInstance();
 				cal.setTime(rs.getDate("Exp_date"));
 				destItem.setYear(cal.get(Calendar.YEAR));
-				destItem.setMonth(cal.get(Calendar.MONTH));
+				destItem.setMonth(cal.get(Calendar.MONTH)+1);
 				destItem.setDay(cal.get(Calendar.DAY_OF_MONTH));
 				
 				destItem.setRating(rs.getDouble("Rating"));
@@ -134,6 +134,153 @@ private static ItemDAO instance;
 			for (int i : item) {
 				pstmt.setInt(count++, i);
 			}
+			
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				ItemBean items = new ItemBean();
+				items.setItem_id(rs.getInt("Item_id"));
+				items.setName(rs.getString("Name"));
+				items.setPrice(rs.getInt("Price"));
+				items.setDiscount_rate(rs.getInt("Discount_rate"));
+				
+				Calendar cal = Calendar.getInstance();
+				cal.setTime(rs.getDate("Exp_date"));
+				items.setYear(cal.get(Calendar.YEAR));
+				items.setMonth(cal.get(Calendar.MONTH));
+				items.setDay(cal.get(Calendar.DAY_OF_MONTH));
+				
+				items.setRating(rs.getDouble("Rating"));
+				items.setImporter(rs.getString("Importer"));
+				items.setCid(rs.getInt("CID"));
+				items.setPid(rs.getInt("PID"));
+				
+				itemList.add(items);
+			}
+			
+			return itemList;
+		} catch (Exception sqle) {
+			throw new RuntimeException(sqle.getMessage());
+		} finally {
+			try {
+				if (pstmt != null) {pstmt.close(); pstmt=null;}
+				if (conn != null) {conn.close(); conn=null;}
+			} catch(Exception e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+	}
+
+	public List<ItemBean> searchName(String Name) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		List<ItemBean> itemList = new ArrayList<ItemBean>();
+		try {
+			StringBuffer query = new StringBuffer();
+			query.append("SELECT * FROM ITEM WHERE Name like ?");
+			
+			conn = DBConnection.getConnection();
+			pstmt = conn.prepareStatement(query.toString());
+			pstmt.setString(1, "%"+Name+"%");
+			
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				ItemBean items = new ItemBean();
+				items.setItem_id(rs.getInt("Item_id"));
+				items.setName(rs.getString("Name"));
+				items.setPrice(rs.getInt("Price"));
+				items.setDiscount_rate(rs.getInt("Discount_rate"));
+				
+				Calendar cal = Calendar.getInstance();
+				cal.setTime(rs.getDate("Exp_date"));
+				items.setYear(cal.get(Calendar.YEAR));
+				items.setMonth(cal.get(Calendar.MONTH));
+				items.setDay(cal.get(Calendar.DAY_OF_MONTH));
+				
+				items.setRating(rs.getDouble("Rating"));
+				items.setImporter(rs.getString("Importer"));
+				items.setCid(rs.getInt("CID"));
+				items.setPid(rs.getInt("PID"));
+				
+				itemList.add(items);
+			}
+			
+			return itemList;
+		} catch (Exception sqle) {
+			throw new RuntimeException(sqle.getMessage());
+		} finally {
+			try {
+				if (pstmt != null) {pstmt.close(); pstmt=null;}
+				if (conn != null) {conn.close(); conn=null;}
+			} catch(Exception e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+	}
+
+	public List<ItemBean> searchProducer(String Name) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		List<ItemBean> itemList = new ArrayList<ItemBean>();
+		try {
+			StringBuffer query = new StringBuffer();
+			query.append("SELECT * FROM ITEM natural join PRODUCERLOCATION WHERE Producer like ?");
+			
+			conn = DBConnection.getConnection();
+			pstmt = conn.prepareStatement(query.toString());
+			pstmt.setString(1, "%"+Name+"%");
+			
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				ItemBean items = new ItemBean();
+				items.setItem_id(rs.getInt("Item_id"));
+				items.setName(rs.getString("Name"));
+				items.setPrice(rs.getInt("Price"));
+				items.setDiscount_rate(rs.getInt("Discount_rate"));
+				
+				Calendar cal = Calendar.getInstance();
+				cal.setTime(rs.getDate("Exp_date"));
+				items.setYear(cal.get(Calendar.YEAR));
+				items.setMonth(cal.get(Calendar.MONTH));
+				items.setDay(cal.get(Calendar.DAY_OF_MONTH));
+				
+				items.setRating(rs.getDouble("Rating"));
+				items.setImporter(rs.getString("Importer"));
+				items.setCid(rs.getInt("CID"));
+				items.setPid(rs.getInt("PID"));
+				
+				itemList.add(items);
+			}
+			
+			return itemList;
+		} catch (Exception sqle) {
+			throw new RuntimeException(sqle.getMessage());
+		} finally {
+			try {
+				if (pstmt != null) {pstmt.close(); pstmt=null;}
+				if (conn != null) {conn.close(); conn=null;}
+			} catch(Exception e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+	}
+
+	public List<ItemBean> searchImporter(String Name) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		List<ItemBean> itemList = new ArrayList<ItemBean>();
+		try {
+			StringBuffer query = new StringBuffer();
+			query.append("SELECT * FROM ITEM WHERE Importer like ?");
+			
+			conn = DBConnection.getConnection();
+			pstmt = conn.prepareStatement(query.toString());
+			pstmt.setString(1, "%"+Name+"%");
 			
 			rs = pstmt.executeQuery();
 			while (rs.next()) {

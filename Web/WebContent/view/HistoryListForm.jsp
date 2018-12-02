@@ -2,6 +2,7 @@
     pageEncoding="EUC-KR"%>
 <%@ page import = "jsp.shoppingbag.model.ShoppingbagBean" %>
 <%@ page import = "jsp.shoppingbag.model.ShoppingbagDAO" %>
+<%@ page import = "jsp.ordered_by.model.OrderedbyBean" %>
 <%@ page import = "java.util.ArrayList" %>
 <%@ page import = "java.util.List" %>
 <!DOCTYPE html>
@@ -33,14 +34,14 @@
 				if (val == "-2") {
 					location.href = "MainForm.jsp?contentPage=pro/AddShoppingbagPro.jsp"
 				} else { // 해당쇼핑백으로 으로 이동할 수 있게 함
-					location.href = "MainForm.jsp?contentPage=view/ShoppingbagInfoForm.jsp?bagId=" + val;
+					location.href = "MainForm.jsp?contentPage=view/JustViewHistoryForm.jsp?bagId=" + val;
 				}
 			}
 		</script>
 	</head>
 	<body>
 		<br><br>
-		<b><font size="6" color="gray">장바구니 리스트</font></b>
+		<b><font size="6" color="gray">주문내역</font></b>
 		<br><br>
 		
 		<%
@@ -48,13 +49,18 @@
 			List<ShoppingbagBean> list = new ArrayList<ShoppingbagBean>();
 			ShoppingbagDAO sdao = ShoppingbagDAO.getInstance();
 			
-			list = sdao.getUnorderedShoppingbagList(Integer.parseInt(session.getAttribute("sessionID").toString()));
+			list = sdao.getOrderedShoppingbagList(Integer.parseInt(session.getAttribute("sessionID").toString()));
+			
+			// 날짜를 가져옴
+			List<OrderedbyBean> olist = new ArrayList <OrderedbyBean>();
+			olist = sdao.getWhenList(Integer.parseInt(session.getAttribute("sessionID").toString()));
 		%>
 		<table>
 			<tr id = "title">
 				<td>장바구니 번호</td>
 				<td>총가격</td>
 				<td>장바구니이름</td>
+				<td>주문날짜</td>
 			</tr>
 			<%
 				int listSize = list.size();
@@ -64,9 +70,9 @@
 					<td><%=list.get(i).getBag_id() %></td>
 					<td><%=list.get(i).getTotal_price() %></td>
 					<td><%=list.get(i).getBag_name()==null ? "장바구니"+list.get(i).getBag_id() : list.get(i).getBag_name() %></td>
+					<td><%=olist.get(i).getYear() %>-<%=olist.get(i).getMonth() %>-<%=olist.get(i).getDay() %></td>
 				</tr>
 			<%  } %>	
 		</table>
-		<input type="button" value="추가하기" onclick = "changeForm(-2)">
 	</body>
 </html>
