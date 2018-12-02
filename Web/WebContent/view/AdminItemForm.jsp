@@ -6,6 +6,8 @@
 <%@ page import = "jsp.producerlocation.model.ProducerlocationDAO" %>
 <%@ page import = "jsp.manage.model.ManageBean" %>
 <%@ page import = "jsp.manage.model.ManageDAO" %>
+<%@ page import = "java.util.List" %>
+<%@ page import = "java.util.ArrayList" %>
 <% 
 	String itemId=request.getParameter("itemId");
 %>
@@ -35,12 +37,18 @@
 		</style>
 		
 		<script type="text/javascript">
+			function confirmStock(val) {
+				var sid = val;
+				var iid = <%=itemId %>;
+				var stock = document.getElementById("oc").value;
+				location.href = "MainForm.jsp?contentPage=pro/EditStockPro.jsp?word=" + sid + "+" + iid + "+" + stock;
+			}
 			function changeForm(val) {
 				if (val == "-1") {
 					location.href = "MainForm.jsp?contentPage=view/CategoryForm.jsp";
 				} else if (val == "-2") {
 					var lk = document.getElementById("oc").value;
-					var id = <%=itemId %>
+					var id = <%=itemId %>;
 					if (lk != 0) {
 						location.href = "MainForm.jsp?contentPage=view/SelectShoppingbagForm.jsp?word=" + id + "+" + lk;
 					}
@@ -101,19 +109,38 @@
 				<td id = "content"><%=item.getImporter() %></td>
 			</tr>
 			<tr>
-				<td id = "title">재고</td>
+				<td id = "title">총재고</td>
 				<td id = "content"><%=mdao.getStock(Integer.parseInt(itemId)) %>개</td>
 			</tr>
-			<tr>
-				<td id="title">구매갯수</td>
-				<td id = "content">
-					<input type="number" id = "oc" name="oc" min = "0" max=<%=mdao.getStock(Integer.parseInt(itemId)) %>>
-				</td>
-			</tr>
 		</table>
-		<input type="button" value="카테고리로" onclick="changeForm(-1)">
-		<% if (mdao.getStock(Integer.parseInt(itemId)) != 0) {%>
-		<input type="button" value="장바구니에 담기" onclick="changeForm(-2)">
-		<%} %>
+		
+		<%
+			List<ManageBean> mlist = new ArrayList<ManageBean>();
+			mlist = mdao.getManageList(Integer.parseInt(itemId));
+		%>
+		
+		<br>
+		<table>
+			<tr id = "title">
+				<td>지역 번호</td>
+				<td>지역 이름</td>
+				<td>현재 재고</td>
+				<td>재고 조절</td>
+			</tr>
+			<%
+				int mlistSize = mlist.size();
+				for (int i = 0; i < mlistSize; i++) {
+			%>
+				<tr id = "content">
+					<td><%=mlist.get(i).getStore_idx() %></td>
+					<td><%=mlist.get(i).getLocation() %></td>
+					<td><%=mlist.get(i).getStock() %></td>
+					<td>
+						<input type="number" id = "oc" name="oc" min = "0">
+						<input type="button" value = "확인" onclick="confirmStock(<%=mlist.get(i).getStore_idx() %>)">
+					</td>
+				</tr>
+			<% } %>
+		</table>
 	</body>
 </html>

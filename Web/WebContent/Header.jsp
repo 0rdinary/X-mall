@@ -33,6 +33,10 @@
 					location.href="MainForm.jsp?contentPage=view/ShoppingbaglistForm.jsp"
 				} else if (value == "7") {	// 구매내역 확인
 					location.href="MainForm.jsp?contentPage=view/HistoryListForm.jsp"
+				} else if (value == "8") {  // 재고부족
+					location.href="MainForm.jsp?contentPage=view/LackListForm.jsp"
+				} else if (value == "9") {	// 매출확인
+					location.href="MainForm.jsp?contentPage=view/IncomeForm.jsp"
 				}
 			}
 		</script>
@@ -56,7 +60,11 @@
 						<button id="categoryBtn" class="btn btn-primary" onclick="changeView(5)">카테고리</button>
 						<button id="shoppingbagBtn" class="btn btn-primary" onclick="changeView(6)">장바구니</button>
 						<button id="historyBtn" class="btn btn-primary" onclick="changeView(7)">주문내역</button>
-				<%  } %>
+						
+						<% if(session.getAttribute("sessionID").toString().equals("-1")) {%>
+								<button id="lackBtn" class="btn btn-primary" onclick="changeView(8)">부족재고</button>
+								<button id="incomeBtn" class="btn btn-primary" onclick="changeView(9)">매출확인</button>
+				<%  }} %>
 			</p>
 		</div>
 	</body>

@@ -24,7 +24,6 @@
 				<% } else { %>
 					<font size=6 color="skyblue"><%=session.getAttribute("sessionID") %></font>
 					<font size=6>님 환영합니다.</font>
-				<% } %>
-		<%  } %>
+				<% }} %>
 	</body>
 </html>

@@ -40,6 +40,9 @@
 					location.href = "MainForm.jsp?contentPage=view/ItemInfoForm.jsp?itemId=" + val;
 				}
 			}
+			function adminForm(val) {
+				location.href = "MainForm.jsp?contentPage=view/AdminItemForm.jsp?itemId=" + val;
+			}
 		</script>
 	</head>
 	<body>
@@ -106,7 +109,11 @@
 					for (int i = 0; i < loopMax; i++) {
 				%>
 					<!-- 리스트를 누르면 해당하는 페이지로 이동할 수 있게 함 -->
+					<% if (session.getAttribute("sessionID").toString().equals("-1")) { %>
+					<tr id="content" onclick="adminForm(<%=itemList.get(i).getItem_id() %>)" style="cursor:pointer">
+					<% } else { %>
 					<tr id="content" onclick="changeForm(<%=itemList.get(i).getItem_id() %>)" style="cursor:pointer">
+					<% } %>
 						<td><%=itemList.get(i).getItem_id() %></td>
 						<td><%=itemList.get(i).getName() %></td>
 						<td><%=itemList.get(i).getPrice() %>원</td>

@@ -1,7 +1,6 @@
 package jsp.ordered_by.model;
 
 import java.sql.*;
-import java.util.Calendar;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -148,6 +147,39 @@ public class OrderedbyDAO {
 			try {
 				if (conn != null) { conn.close(); conn=null; }
 			} catch(Exception e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+	}
+
+	public int getIncome(Date from, Date to) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		int total = 0;
+		try {
+			StringBuffer query = new StringBuffer();
+			query.append("select sum(Total_price)  from ORDERED_BY natural join SHOPPINGBAG  where Is_ordered=true and When_ordered between date(?) and date(?)");
+			
+			conn = DBConnection.getConnection();
+			pstmt = conn.prepareStatement(query.toString());
+			pstmt.setDate(1, from);
+			pstmt.setDate(2, to);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				total = rs.getInt("sum(Total_price)");
+			}
+			
+			return total;
+		} catch (Exception sqle) {
+			throw new RuntimeException(sqle.getMessage());
+		} finally {
+			try {
+				if (pstmt != null) {pstmt.close(); pstmt=null; }
+				if (conn != null) {conn.close(); conn=null; }
+			} catch (Exception e) {
 				throw new RuntimeException(e.getMessage());
 			}
 		}

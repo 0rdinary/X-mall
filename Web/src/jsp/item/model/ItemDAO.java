@@ -316,4 +316,52 @@ private static ItemDAO instance;
 			}
 		}
 	}
+
+	public List<LackItemBean> getLackItemList() {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		List<LackItemBean> itemList = new ArrayList<LackItemBean>();
+		try {
+			StringBuffer query = new StringBuffer();
+			query.append("SELECT T1.Item_id, ITEM.Name, T2.SUMM - T1.SUMM AS Lack\n" + 
+					"FROM ( SELECT Item_id, SUM(Stock) AS SUMM\n" + 
+					"       FROM MANAGE NATURAL JOIN ITEM\n" + 
+					"       GROUP BY Item_id) T1,\n" + 
+					"     ( SELECT Item_id, SUM(Stock) AS SUMM\n" + 
+					"       FROM ORDERED_BY NATURAL JOIN INCLUDE\n" + 
+					"       WHERE Is_ordered = FALSE\n" + 
+					"       GROUP BY Item_id) T2,\n" + 
+					"	ITEM\n" + 
+					"WHERE T1.Item_id = T2.Item_id\n" + 
+					"AND T1.Item_id = ITEM.Item_id\n" + 
+					"AND T1.SUMM - T2.SUMM < 0;");
+			
+			conn = DBConnection.getConnection();
+			pstmt = conn.prepareStatement(query.toString());
+			
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				LackItemBean items = new LackItemBean();
+				
+				items.setItem_id(rs.getInt("Item_id"));
+				items.setName(rs.getString("Name"));
+				items.setLack(rs.getInt("Lack"));
+				
+				itemList.add(items);
+			}
+			
+			return itemList;
+		} catch (Exception sqle) {
+			throw new RuntimeException(sqle.getMessage());
+		} finally {
+			try {
+				if (pstmt != null) {pstmt.close(); pstmt=null;}
+				if (conn != null) {conn.close(); conn=null;}
+			} catch(Exception e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+	}
 }

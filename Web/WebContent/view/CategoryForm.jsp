@@ -43,7 +43,7 @@
 				}
 				var tt = document.getElementById("search").value;
 				
-				location.href="MainForm.jsp?contentPage=view/SearchItemlistForm.jsp?word=" + tp + "+" + tt;
+				location.href="MainForm.jsp?contentPage=view/SearchItemlistForm.jsp?word=" + encodeURI(tp + "+" + tt);
 			}
 		</script >
 	</head>
