@@ -11,15 +11,24 @@ Project Name : X-mall
 ##  A. 회원 가입
 
 <img width="787" alt="signup" src="https://user-images.githubusercontent.com/30919143/49351885-c60f1680-f6f8-11e8-89ab-231bbb73dd68.png">
+
 회원 가입은
 1.  아이디 (숫자 11자리 이내)
+
 2.  비밀번호
+
 3.  비밀번호 확인
+
 4.  주소
+
 5.  휴대전화
+
 6.  성별
+
 7.  나이 (0 = 비공개)
+
 8.  직업
+
 을 받는다.
 
 아이디는 중복 확인을 할 수 있다.
