@@ -183,6 +183,7 @@ private static ItemDAO instance;
 			conn = DBConnection.getConnection();
 			pstmt = conn.prepareStatement(query.toString());
 			pstmt.setString(1, "%"+Name+"%");
+			System.out.println(pstmt);
 			
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
