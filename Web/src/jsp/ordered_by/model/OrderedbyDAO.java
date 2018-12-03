@@ -184,4 +184,39 @@ public class OrderedbyDAO {
 			}
 		}
 	}
+
+	public boolean isFirst(int uid) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		int total = 0;
+		try {
+			StringBuffer query = new StringBuffer();
+			query.append("select * from ORDERED_BY where User_id = ? and Is_ordered = true");
+			
+			conn = DBConnection.getConnection();
+			pstmt = conn.prepareStatement(query.toString());
+			pstmt.setInt(1, uid);
+			
+			rs = pstmt.executeQuery();
+			
+			if (!rs.next()) {
+				return true;
+			}
+			
+			return false;
+		} catch (Exception sqle) {
+			throw new RuntimeException(sqle.getMessage());
+		} finally {
+			try {
+				if (pstmt != null) {pstmt.close(); pstmt=null; }
+				if (conn != null) {conn.close(); conn=null; }
+			} catch (Exception e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+	}
+
+	
 }

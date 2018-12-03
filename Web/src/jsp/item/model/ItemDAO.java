@@ -365,4 +365,43 @@ private static ItemDAO instance;
 			}
 		}
 	}
+	
+	public ItemBean recommend(String location) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		ItemBean result = new ItemBean();
+		try {
+			StringBuffer query = new StringBuffer();
+			query.append("select Item_id, Name, Price, SUM(Stock)\n" + 
+					"from ( select Bag_idx from ORDERED_BY nattural join CUSTOMER where Is_ordered=true and Address=?) T1 natural join INCLUDE natural join ITEM\n" + 
+					"group by Item_id\n" + 
+					"order by SUM(Stock) desc;");
+			
+			conn = DBConnection.getConnection();
+			pstmt = conn.prepareStatement(query.toString());
+			pstmt.setString(1, location);
+			
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				
+				result.setItem_id(rs.getInt("Item_id"));
+				result.setName(rs.getString("Name"));
+				result.setPrice(rs.getInt("Price"));
+				
+			}
+			
+			return result;
+		} catch (Exception sqle) {
+			throw new RuntimeException(sqle.getMessage());
+		} finally {
+			try {
+				if (pstmt != null) {pstmt.close(); pstmt=null;}
+				if (conn != null) {conn.close(); conn=null;}
+			} catch(Exception e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+	}
 }
