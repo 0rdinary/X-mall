@@ -9,6 +9,7 @@
 	<body>
 		<%
 			session.invalidate();	// 葛电技记沥焊 昏力
+			
 			response.sendRedirect("../MainForm.jsp");
 		%>
 	</body>

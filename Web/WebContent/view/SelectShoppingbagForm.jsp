@@ -37,9 +37,18 @@
 		
 		<script type="text/javascript">
 			function changeForm(val) {
-				var itemId = <%=itemId %>;
-				var count = <%=count %>;
-				location.href = "MainForm.jsp?contentPage=pro/SelectShoppingbagPro.jsp?word=" + val + "+" + itemId + "+" + count;
+				if (val == -2) {
+					var lk = <%=count %>
+					var id = <%=itemId %>
+					if (lk != 0) {
+						location.href = "MainForm.jsp?contentPage=pro/AddShoppingbagPro.jsp?word=" + id + "+" + lk;
+					}
+				} else {
+					var itemId = <%=itemId %>
+					var count = <%=count %>
+					location.href = "MainForm.jsp?contentPage=pro/SelectShoppingbagPro.jsp?word=" + val + "+" + itemId + "+" + count;
+				}
+				
 			}
 		</script>
 	</head>
@@ -55,6 +64,7 @@
 			
 			list = sdao.getUnorderedShoppingbagList(Integer.parseInt(session.getAttribute("sessionID").toString()));
 		%>
+		<input type="button" value="추가하기" onclick = "changeForm(-2)">
 		<table>
 			<tr id = "title">
 				<td>장바구니 번호</td>

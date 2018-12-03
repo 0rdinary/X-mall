@@ -36,7 +36,13 @@
 			function changeForm(val) {
 				if (val == "-1") {
 					location.href="MainForm.jsp?contentPage=view/ShoppingbaglistForm.jsp"
-				} 
+				} else if (val == "-2") {
+					var lk = <%=count %>
+					var id = <%=itemId %>
+					if (lk != 0) {
+						location.href = "MainForm.jsp?contentPage=pro/AddShoppingbagPro.jsp?word=" + id + "+" + lk;
+					}
+				}
 			}
 		</script>
 	</head>
