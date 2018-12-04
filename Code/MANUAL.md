@@ -100,7 +100,7 @@ Project Name : X-mall
 <img width="799" alt="search_b" src="https://user-images.githubusercontent.com/30919143/49352453-50587a00-f6fb-11e8-885f-2519e57697b3.png">
 
 * ItemDAO를 통해 쿼리문을 실행한다. Mysql의 쿼리문을 통해 결과 값을 반환 받는다.
-* temBean의 리스트에 각 정보가 저장된다.
+* ItemBean의 리스트에 각 정보가 저장된다.
 
 ## C. 상품과 장바구니 연동
 
@@ -143,7 +143,7 @@ Project Name : X-mall
 
 <img width="779" alt="over stock_sb" src="https://user-images.githubusercontent.com/30919143/49438116-b2e76e00-f800-11e8-866b-fef865842813.png">
 
-- 해당 장바구니에서 해당 열을 빨간색으로 알려준다.
+- 해당 장바구니에서 해당 열을 빨간색으로 알려 준다.
 
 <img width="770" alt="modify over stock" src="https://user-images.githubusercontent.com/30919143/49438113-b2e76e00-f800-11e8-89f2-8b73e62b5999.png">
 
@@ -192,7 +192,7 @@ Project Name : X-mall
 <img width="737" alt="update order list" src="https://user-images.githubusercontent.com/30919143/49439313-09a27700-f804-11e8-9266-abfabc9cde36.png">
 
 - 구매를 한 정보를 "주문내역" 탭에서 확인 가능하다.
-- 오늘 날짜 (12/4) 로 주문 날짜가 작성되어진 것을 확인할 수 있다.
+- 오늘 날짜 (12/4) 로 주문 날짜가 작성 되어진 것을 확인할 수 있다.
 
 
 # 5. 관리자 기능
@@ -224,7 +224,7 @@ Project Name : X-mall
 
 <img width="797" alt="admin_info_b" src="https://user-images.githubusercontent.com/30919143/49424504-1f04aa80-f7de-11e8-84ee-d7bdd4e66a99.png">
 
-- 상품으로를 선택한다면, 수정했던 상품 정보 페이지로 이동한다.
+- "상품으로"를 선택한다면, 수정했던 상품 정보 페이지로 이동한다.
 - 카테고리를 선택한다면, 카테고리 페이지로 이동한다.
 
 ## B. 재고 부족
@@ -246,5 +246,109 @@ Project Name : X-mall
 <img width="787" alt="revenue" src="https://user-images.githubusercontent.com/30919143/49435426-effc3200-f7f9-11e8-9f3c-f82cd643072f.png">
 
 - 시작일과 종료일까지의 매출 총액을 보여준다.
+
+
+# 추가 과제
+
+## 1. 웹 데이터 베이스 프로그램
+
+<img width="371" alt="jsp 1" src="https://user-images.githubusercontent.com/30919143/49459564-ac71ea00-f832-11e8-86dc-8d63dc730302.png">
+
+<img width="363" alt="jsp 2" src="https://user-images.githubusercontent.com/30919143/49459565-ad0a8080-f832-11e8-91fa-c2d66e8b2a14.png">
+
+- 이클립스를 기반으로 하여 JSP로 웹 데이터 베이스 프로그램을 제작하였다.
+
+
+### 1. Mysql 설치 (Ubuntu)
+
+<https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-18-04>
+
+<img width="730" alt="mysql-server" src="https://user-images.githubusercontent.com/30919143/49461159-64ed5d00-f836-11e8-9f4d-6e41478846ed.png">
+
+<pre><code>#sudo apt install mysql-server</code></pre>
+
+
+### 2. JSP 설정
+
+<https://blog.lael.be/post/858>
+
+<pre><code>#apt-get update</code></pre>
+
+- 패키지 목록 갱신
+
+<pre><code>#apt-get install openjdk-8-jre-headless</code></pre>
+
+- 자바 해석기 설치
+
+<pre><code>#apt-get install openjdk-8-jdk</code></pre>
+
+- 자바 컴파일러 설치
+
+<pre><code>#java -version</code></pre>
+
+<img width="689" alt="java -v" src="https://user-images.githubusercontent.com/30919143/49460577-fc51b080-f834-11e8-9efb-82004e102503.png">
+
+- 자바 해석기 버전 확인
+- openjdk version이 "1.8.0_191"이 나옴.
+
+<pre><code>#javac -version</code></pre>
+
+<img width="426" alt="javac -v" src="https://user-images.githubusercontent.com/30919143/49460578-fcea4700-f834-11e8-837f-e7d3e08cc15e.png">
+
+- 자바 컴파일러 버전 확인
+- "javac 1.8.0_191"이 나옴
+
+
+### Tomcat8 설치
+
+<pre><code>#apt-get install tomcat8</code></pre>
+
+- Apache Tomcat8 설치
+
+<pre><code>#/usr/share/tomcat8/bin/version.sh</code></pre>
+
+<img width="726" alt="tomcat version" src="https://user-images.githubusercontent.com/30919143/49460496-c57b9a80-f834-11e8-885e-34d6ca823a7f.png">
+
+- 설치된 tomcat 버전 확인
+
+<pre><code>#apt-get install libmysql-java</code></pre>
+
+- Java에서 MYSql DB와 Connect 하는 드라이버를 설치해야 한다.
+- /usr/share/java/mysql-connector-java.jar 위치에 connector 가 설치된다.
+
+<pre><code>#ln -s /usr/share/javamysql-connector-java.jar /usr/share/tomcat8/lib/mysql-connector-java.jar</code></pre>
+
+- Tomcat8 라이브러리 폴더에 심볼릭 링크 생성
+
+<pre><code>#service tomcat8 restart</code></pre>
+
+-Tomcat8 재시작
+
+
+<https://stackoverflow.com/questions/30962732/could-not-load-the-tomcat-server-configuration/34575819>
+
+<pre><code>cd /usr/share/tomcat8
+sudo ln -s /var/lib/tomcat8/conf conf
+sudo ln -s /var/log/tomca87 log
+sudo ln -s /etc/tomcat8/policy.d/03catalina.policy conf/catalina.policy
+sudo chmod -R a+rwx /usr/share/tomcat7/conf</code></pre>
+
+- 추가적인 심볼릭 링크 생성
+
+## 3. 신규 고객 추천 서비스
+
+<img width="791" alt="recommend" src="https://user-images.githubusercontent.com/30919143/49461671-94509980-f837-11e8-805b-acf1625deed1.png">
+
+- 신규 고객이 로그인을 하면 고객에게 맞는 상품을 추천하는 시스템을 구현하였다.
+- mahout을 활용해보려 했으나,,, 실패
+
+## 4. Github 사용
+
+<https://github.com/HotsChef/X-mall>
+
+<img width="652" alt="git" src="https://user-images.githubusercontent.com/30919143/49461148-63bc3000-f836-11e8-9133-7cc62537de51.png">
+
+<img width="729" alt="git setting" src="https://user-images.githubusercontent.com/30919143/49461156-6454c680-f836-11e8-8f88-b5502314c81d.png">
+
 
 
