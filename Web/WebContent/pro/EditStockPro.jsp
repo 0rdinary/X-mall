@@ -18,6 +18,9 @@
 		function changeForm(val) {
 				if (val == "-1") {
 					location.href = "MainForm.jsp?contentPage=view/CategoryForm.jsp";
+				} else if (val == "-2") {
+					var ii = <%= iid %>
+					location.href = "MainForm.jsp?contentPage=view/AdminItemForm.jsp?itemId=" + ii;
 				}
 			}
 		</script>
@@ -34,5 +37,6 @@
 		<br><br>
 		
 		<input type = "button" value="카테고리로" onclick="changeForm(-1)">
+		<input type = "button" value="상품으로" onclick="changeForm(-2)">
 	</body>
 </html>
