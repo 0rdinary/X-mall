@@ -1,5 +1,5 @@
-DataBase COMP322004 
-Team1's Project 
+DataBase COMP322004
+Team1's Project
 Phase 3.
 
 Project Name : X-mall
@@ -8,93 +8,243 @@ Project Name : X-mall
 
 # 1. 회원 관련 기능
 
-##  A. 회원 가입
+## A. 회원 가입
 
 <img width="787" alt="signup" src="https://user-images.githubusercontent.com/30919143/49351885-c60f1680-f6f8-11e8-89ab-231bbb73dd68.png">
 
-회원 가입은
--  아이디 (숫자 11자리 이내)
++ 회원 가입은
++ 아이디 (숫자 11자리 이내)
 
--  비밀번호
++ 비밀번호
 
--  비밀번호 확인
++ 비밀번호 확인
 
--  주소
++ 주소
 
--  휴대전화
++ 휴대전화
 
--  성별
++ 성별
 
--  나이 (0 = 비공개)
++ 나이 (0 = 비공개)
 
--  직업
++ 직업
 
 을 받는다.
 
-아이디는 중복 확인을 할 수 있다.
+- 아이디는 중복 확인을 할 수 있다.
 <img width="793" alt="not_permit_id" src="https://user-images.githubusercontent.com/30919143/49354820-18a3ff00-f708-11e8-9f82-37b28bb16ef5.png">
 
-아이디가 중복되었을 경우에, 허용되지 않는 아이디라고 알려주는 페이지로 연결된다.
+- 아이디가 중복되었을 경우에, 허용되지 않는 아이디라고 알려주는 페이지로 연결된다.
 
 
-##    B. 회원 정보 수정
-
-<img width="800" alt="modified profile" src="https://user-images.githubusercontent.com/30919143/49351889-c6a7ad00-f6f8-11e8-96c1-046b9deab980.png">
-
-등록되어 있는 회원의 정보를 수정할 수 있다.
-회원 가입 때 사용했던,
-주소, 휴대전화, 성별, 나이, 직업이 변경 가능하다.
-
-단, 아이디는 고유의 값이기 때문에 수정이 불가하다.
-
-
-##    C. 비밀 번호 수정
+## B. 회원 정보 수정
 
 <img width="800" alt="modified profile" src="https://user-images.githubusercontent.com/30919143/49351889-c6a7ad00-f6f8-11e8-96c1-046b9deab980.png">
 
-아이디와 별개로 비밀번호는 수정 가능하다.
-다만 수정을 할 경우, 비밀번호 란과 비밀번호 확인란이 같을 때에만 수정이 가능하다.
+- 등록되어 있는 회원의 정보를 수정할 수 있다.
+- 회원 가입 때 사용했던, 주소, 휴대전화, 성별, 나이, 직업이 변경 가능하다.
+
+- 단, 아이디는 고유의 값이기 때문에 수정이 불가하다.
 
 
-##    D. 로그인
+## C. 비밀 번호 수정
+
+<img width="800" alt="modified profile" src="https://user-images.githubusercontent.com/30919143/49351889-c6a7ad00-f6f8-11e8-96c1-046b9deab980.png">
+
+- 아이디와 별개로 비밀번호는 수정 가능하다.
+- 다만 수정을 할 경우, 비밀번호 란과 비밀번호 확인란이 같을 때에만 수정이 가능하다.
+
+
+## D. 로그인
 
 <img width="800" alt="login" src="https://user-images.githubusercontent.com/30919143/49351883-c60f1680-f6f8-11e8-8bff-8c4d0d662e01.png">
 
-로그인은 아이디, 비밀번호를 입력 받고, CUSTOMER Table을 참고하여 아이디와 비밀번호가 일치한다면 로그인이 가능하다.
+- 로그인은 아이디, 비밀번호를 입력 받고, CUSTOMER Table을 참고하여 아이디와 비밀번호가 일치한다면 로그인이 가능하다.
 
 
-##    E. 관리자 계정
+## E. 관리자 계정
 
-<insert to Pic>
-    
+<img width="799" alt="admin_login" src="https://user-images.githubusercontent.com/30919143/49422635-fc6f9300-f7d7-11e8-97d4-8850f10ff4d2.png">
 
-#   2. 물품 관련 기능
+- 관리자 계정은 일반 유저들의 계정과는 다르게 음수 값으로 설정하였다.
 
-##  A. 카테고리 리스트 보기
+<img width="795" alt="admin_connect" src="https://user-images.githubusercontent.com/30919143/49422634-fc6f9300-f7d7-11e8-8963-2e935ba08d6a.png">
+
+- 관리자 계정으로 로그인을 하면,
+관리자 계정인 것을 알려주고, 상단의 메뉴 탭도 관리자 용 메뉴가 보인다.
+
+
+# 2. 물품 관련 기능
+
+## A. 카테고리 리스트 보기
 
 <img width="793" alt="category_m" src="https://user-images.githubusercontent.com/30919143/49351890-c6a7ad00-f6f8-11e8-82b7-64a9063666fa.png">
 
-카테고리 란에 들어오면, 대분류 | 소분류로 나뉘어진 화면이 나온다.
+- 카테고리 란에 들어오면, 대분류 | 소분류로 나뉘어진 화면이 나온다.
 
 <img width="798" alt="category_s" src="https://user-images.githubusercontent.com/30919143/49354984-d929e280-f708-11e8-91c2-c8bde2c4a078.png">
 
-소분류를 클릭하게 되면, 해당 소분류에 있는 상품들이 보여진다.
+- 소분류를 클릭하게 되면, 해당 소분류에 있는 상품들이 보여진다.
 
-    
-##  B. 상품 검색
+
+## B. 상품 검색
+
 <img width="807" alt="search_a" src="https://user-images.githubusercontent.com/30919143/49352452-50587a00-f6fb-11e8-8f40-7b6d04c7e623.png">
-    상품 검색은,
-    * 상품 이름
-    * 상품 번호
-    * 생산자
-    * 판매자
-    를 통해 검색한다.
-    
-<img width="799" alt="search_b" src="https://user-images.githubusercontent.com/30919143/49352453-50587a00-f6fb-11e8-885f-2519e57697b3.png">
-검색은
-#! code
-<pre><code> printf("Hello World!"); </code></pre>
-의 쿼리문으로 진행하고 결과를 GUI로 보여준다.
+상품 검색은,
+* 상품 이름
+* 상품 번호
+* 생산자
+* 판매자
+를 통해 검색한다.
 
-##  C. 물품에 대한 정보와 장바구니 연동
-카테고리 분류
+<img width="799" alt="search_b" src="https://user-images.githubusercontent.com/30919143/49352453-50587a00-f6fb-11e8-885f-2519e57697b3.png">
+
+* ItemDAO를 통해 쿼리문을 실행한다. Mysql의 쿼리문을 통해 결과 값을 반환 받는다.
+* temBean의 리스트에 각 정보가 저장된다.
+
+## C. 상품과 장바구니 연동
+
+<img width="789" alt="add_item" src="https://user-images.githubusercontent.com/30919143/49436788-59ca0b00-f7fd-11e8-8c83-8cee848bb90b.png">
+
+- 상품 창에서 장바구니에 넣을 매수를 선택한다.
+
+<img width="753" alt="select sb" src="https://user-images.githubusercontent.com/30919143/49436791-5a62a180-f7fd-11e8-97d6-b36da83f7842.png">
+
+- 상품을 넣을 장바구니를 결정한다.
+
+<img width="772" alt="add sb" src="https://user-images.githubusercontent.com/30919143/49436787-59317480-f7fd-11e8-9ffc-ab3d32670620.png">
+
+- 만약, 장바구니를 추가하고 싶다면 해당 화면에서 추가 가능하다.
+
+<img width="756" alt="select sb_b" src="https://user-images.githubusercontent.com/30919143/49436792-5afb3800-f7fd-11e8-8fa6-dac3fa72ea11.png">
+
+- 돌아가기를 누르면, 전에 선택했던 상품의 Id와 수량을 계속 저장하고 있다.
+때문에 장바구니에 넣는 과정을 그대로 지속할 수 있다.
+
+<img width="752" alt="notify add to sb" src="https://user-images.githubusercontent.com/30919143/49436789-59ca0b00-f7fd-11e8-90b4-716f23116624.png">
+
+- 넣고 싶은 장바구니를 선택하면 추가가 되었다는 안내 페이지가 나온다.
+
+<img width="752" alt="result of sb" src="https://user-images.githubusercontent.com/30919143/49436790-5a62a180-f7fd-11e8-879d-7f8bd7bed4ad.png">
+
+- "장바구니 확인하기"를 누른다면, 적용된 결과를 확인할 수 있다.
+(비어 있던 장바구니를 선택하여서 총 가격이 19,740원으로 된 것을 확인할 수 있다.)
+
+
+## D. 재고 부족 물품 구매
+
+<img width="789" alt="item_stock 0" src="https://user-images.githubusercontent.com/30919143/49438112-b24ed780-f800-11e8-8960-f7f2f2062823.png">
+
+- 재고가 0일 경우, "장바구니에 담기" 버튼이 비활성화 된다.
+
+<img width="773" alt="item_stock non zero" src="https://user-images.githubusercontent.com/30919143/49438111-b24ed780-f800-11e8-984a-3e0b28c7e692.png">
+
+- 만약 재고보다 많은 양의 양을 주문할 경우
+
+<img width="779" alt="over stock_sb" src="https://user-images.githubusercontent.com/30919143/49438116-b2e76e00-f800-11e8-866b-fef865842813.png">
+
+- 해당 장바구니에서 해당 열을 빨간색으로 알려준다.
+
+<img width="770" alt="modify over stock" src="https://user-images.githubusercontent.com/30919143/49438113-b2e76e00-f800-11e8-89f2-8b73e62b5999.png">
+
+- 해당 주문 내역을 클릭하면, 주문한 수량을 수정할 수 있다.
+
+<img width="745" alt="notify modifcation" src="https://user-images.githubusercontent.com/30919143/49438114-b2e76e00-f800-11e8-81e2-c33fb8e9d701.png">
+
+- "수정하기" 버튼을 누른 후, 수정이 되었다는 페이지로 연결된다.
+
+<img width="758" alt="after sb" src="https://user-images.githubusercontent.com/30919143/49438110-b1b64100-f800-11e8-9415-73801014240c.png">
+
+- 수정 후, 해당 장바구니에서 "구매하기" 버튼이 활성화 되며 구매를 진행할 수 있다.
+
+
+# 3. 장바구니 관련 기능
+
+## A. 장바구니 유지
+
+<img width="795" alt="before logout" src="https://user-images.githubusercontent.com/30919143/49438824-c4317a00-f802-11e8-8f82-b2fea72be110.png">
+
+- 로그 아웃 하기 전의 장바구니 내역들이다.
+
+<img width="786" alt="again login" src="https://user-images.githubusercontent.com/30919143/49438822-c398e380-f802-11e8-87c3-5784462c40d5.png">
+
+- 시간 차를 두고 로그 아웃 후, 로그인을 하였다.
+
+<img width="797" alt="keep sb" src="https://user-images.githubusercontent.com/30919143/49438826-c4ca1080-f802-11e8-9b99-0412392a5ee4.png">
+
+- 장바구니의 내역들이 그대로 유지되어 있다.
+
+
+# 4. 구매 기능
+
+## A. 장바구니 내 구매
+
+<img width="770" alt="init sb" src="https://user-images.githubusercontent.com/30919143/49439312-0909e080-f804-11e8-81e1-f9a9203fd7d6.png">
+
+- 장바구니 내에서만 "구매하기" 버튼이 존재한다.
+- 상품 페이지에서는 "장바구니에 담기" 버튼만이 존재한다.
+- 즉, 상품을 장바구니에 담아야지만 주문이 가능하다.
+
+<img width="764" alt="buy sb" src="https://user-images.githubusercontent.com/30919143/49439305-05765980-f804-11e8-955b-0a6893c9d8de.png">
+
+- 장바구니의 "구매하기" 버튼을 클릭 시, 구매가 되었다는 안내 페이지로 연결된다.
+
+<img width="737" alt="update order list" src="https://user-images.githubusercontent.com/30919143/49439313-09a27700-f804-11e8-9266-abfabc9cde36.png">
+
+- 구매를 한 정보를 "주문내역" 탭에서 확인 가능하다.
+- 오늘 날짜 (12/4) 로 주문 날짜가 작성되어진 것을 확인할 수 있다.
+
+
+# 5. 관리자 기능
+
+## P. 카테고리
+
+<img width="790" alt="admin_item_info" src="https://user-images.githubusercontent.com/30919143/49422906-eadabb00-f7d8-11e8-9e25-40ae605aee26.png">
+
+관리자 계정에서는 대분류 / 소분류 까지는 일반 유저와 똑같지만
+상품의 상세 화면에서는 지역별로 재고량을 조절할 수 있는 관리 페이지가 나온다.
+
+## A. 물품 재고 관리
+
+<img width="790" alt="admin_item_info" src="https://user-images.githubusercontent.com/30919143/49422906-eadabb00-f7d8-11e8-9e25-40ae605aee26.png">
+
+- 관리자 계정에서는 대분류 / 소분류 까지는 일반 유저와 똑같지만
+- 상품의 상세 화면에서는 지역별로 재고량을 조절할 수 있는 관리 페이지가 나온다.
+
+<img width="778" alt="admin_info_a" src="https://user-images.githubusercontent.com/30919143/49424503-1dd37d80-f7de-11e8-97aa-1f337f4c1e7b.png">
+
+- 상품 정보에 대한 페이지로 가게 되면, 일반 유저와 다르게 재고를 조절할 수 있는 페이지가 나온다.
+
+<img width="794" alt="admin_info_m" src="https://user-images.githubusercontent.com/30919143/49424506-1f04aa80-f7de-11e8-8280-a6001ea3d9b7.png">
+
+- 재고를 조절하면, 제고가 조절되었다는 것을 알려주고
+* 카테고리로
+* 상품으로
+- 두 가지의 선택지를 선택할 수 있다.
+
+<img width="797" alt="admin_info_b" src="https://user-images.githubusercontent.com/30919143/49424504-1f04aa80-f7de-11e8-84ee-d7bdd4e66a99.png">
+
+- 상품으로를 선택한다면, 수정했던 상품 정보 페이지로 이동한다.
+- 카테고리를 선택한다면, 카테고리 페이지로 이동한다.
+
+## B. 재고 부족
+
+<img width="780" alt="lack_item" src="https://user-images.githubusercontent.com/30919143/49435011-f2aa5780-f7f8-11e8-8083-c2a969321eb0.png">
+
+- 재고부족 탭으로 들어가면, 재고가 부족한 아이템의 리스트를 볼 수 있다.
+
+<img width="779" alt="lack_item_info" src="https://user-images.githubusercontent.com/30919143/49435013-f342ee00-f7f8-11e8-8a0b-0ef2641556fc.png">
+
+- 상품을 클릭하면, 상품의 재고를 수정할 수 있는 페이지로 연결된다.
+
+## C. 매출 확인
+
+<img width="792" alt="revenue_when" src="https://user-images.githubusercontent.com/30919143/49435427-effc3200-f7f9-11e8-8f88-874685951a78.png">
+
+- 매출을 확인할 시작일과 종료일을 입력 받는다.
+
+<img width="787" alt="revenue" src="https://user-images.githubusercontent.com/30919143/49435426-effc3200-f7f9-11e8-9f3c-f82cd643072f.png">
+
+- 시작일과 종료일까지의 매출 총액을 보여준다.
+
+
