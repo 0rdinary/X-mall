@@ -4,6 +4,22 @@ Phase 3.
 
 Project Name : X-mall
 ***
+# 본 과제는 이클립스 EE를 통해 진행함
+
+# 실행하기 (추가과제 항목에 톰켓 등을 다 설치한것을 전제로함)
+## 서버 설정
+<img width="787" alt="signup" src="https://user-images.githubusercontent.com/39138853/49473217-cb817380-f854-11e8-88b4-9ad0184f39ec.PNG">
+기존 프로젝트에 Servers폴더나 서버 폴더가 있다면 삭제하고 밑의 Server탭에 add버튼을 클릭한다
+
+<img width="787" alt="signup" src="https://user-images.githubusercontent.com/39138853/49473225-cf14fa80-f854-11e8-9eb9-16063978faf3.PNG">
+tomcat8.5 서버를 선택한다
+
+<img width="787" alt="signup" src="https://user-images.githubusercontent.com/39138853/49473228-d0debe00-f854-11e8-8ff3-eb317bd7b7f7.PNG">
+/usr/share/tomcat8 폴더를 지정해준다
+
+## 실행하기
+<img width="787" alt="signup" src="https://user-images.githubusercontent.com/39138853/49473229-d2a88180-f854-11e8-8e39-760be2b674ef.PNG">
+MainForm.jsp에서 프로젝트를 시작한다
 
 
 # 1. 회원 관련 기능
@@ -350,5 +366,16 @@ sudo chmod -R a+rwx /usr/share/tomcat7/conf</code></pre>
 
 <img width="729" alt="git setting" src="https://user-images.githubusercontent.com/30919143/49461156-6454c680-f836-11e8-8f88-b5502314c81d.png">
 
+# 오류 해결
+## jsp 파일에 cannot resolved 에러가 뜰때
+Web 폴더를 우클릭하면 Build Path > Configure Build Path 버튼을 누른다.
+Library 탭에 들어간다.
+JRE System Library을 선택하고 Edit을 클릭
+alternate JRE선택바를 클릭하여 해당 JDK버전을 선택한다.
+<http://zanywitch.tistory.com/79>
 
-
+## 로컬 호스트 에러가 뜰때
+<img width="729" alt="git setting" src="https://user-images.githubusercontent.com/39138853/49473232-d3d9ae80-f854-11e8-8d17-e501cac7e1c7.PNG">
+터미널 창을 열어
+$sudo service tomcat8 stop
+을 입력한다
