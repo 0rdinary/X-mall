@@ -40,7 +40,7 @@
 			function confirmStock(val) {
 				var sid = val;
 				var iid = <%=itemId %>;
-				var stock = document.getElementById("oc").value;
+				var stock = document.getElementById("oc"+sid).value;
 				location.href = "MainForm.jsp?contentPage=pro/EditStockPro.jsp?word=" + sid + "+" + iid + "+" + stock;
 			}
 			function changeForm(val) {
@@ -130,13 +130,14 @@
 			<%
 				int mlistSize = mlist.size();
 				for (int i = 0; i < mlistSize; i++) {
+					int sid = mlist.get(i).getStore_idx();
 			%>
 				<tr id = "content">
 					<td><%=mlist.get(i).getStore_idx() %></td>
 					<td><%=mlist.get(i).getLocation() %></td>
 					<td><%=mlist.get(i).getStock() %></td>
 					<td>
-						<input type="number" id = "oc" name="oc" min = "0">
+						<input type="number" id = "oc<%=sid %>" name="oc<%=sid %>" min = "0">
 						<input type="button" value = "È®ÀÎ" onclick="confirmStock(<%=mlist.get(i).getStore_idx() %>)">
 					</td>
 				</tr>
