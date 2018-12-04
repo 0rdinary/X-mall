@@ -7,6 +7,12 @@ Project Name : X-mall
 # 본 과제는 이클립스 EE를 통해 진행함
 
 # 실행하기 (추가과제 항목에 톰켓 등을 다 설치한것을 전제로함)
+## mysql에서 실행해야할 sql파일들
+X-mall/code 폴더의
+Team1-p2.sql
+admin.sql
+INDEX.sql
+
 ## 서버 설정
 <img width="787" alt="signup" src="https://user-images.githubusercontent.com/39138853/49473217-cb817380-f854-11e8-88b4-9ad0184f39ec.PNG">
 기존 프로젝트에 Servers폴더나 서버 폴더가 있다면 삭제하고 밑의 Server탭에 add버튼을 클릭한다
@@ -78,7 +84,7 @@ MainForm.jsp에서 프로젝트를 시작한다
 - 로그인은 아이디, 비밀번호를 입력 받고, CUSTOMER Table을 참고하여 아이디와 비밀번호가 일치한다면 로그인이 가능하다.
 
 
-## E. 관리자 계정
+## E. 관리자 계정(id:-1, pw:-1)
 
 <img width="799" alt="admin_login" src="https://user-images.githubusercontent.com/30919143/49422635-fc6f9300-f7d7-11e8-97d4-8850f10ff4d2.png">
 
